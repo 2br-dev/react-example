@@ -3,9 +3,9 @@
 
 {$_page.content}
 
-<div class="hello-god">
-  <h1 style="text-align: center">Hello Coder!</h1>  
-</div>
+<main id="root">
+  
+</main>
 
 {include file="./components/scripts.tpl"}
 {/strip}
