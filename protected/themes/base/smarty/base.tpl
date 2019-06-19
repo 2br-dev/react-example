@@ -4,7 +4,7 @@
 {$_page.content}
 
 <main id="root">
-  
+    
 </main>
 
 {include file="./components/scripts.tpl"}

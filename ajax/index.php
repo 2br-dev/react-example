@@ -226,5 +226,10 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQ
 			
 	}
 
+	// авторизация
+	if ($controller = 'sign-in') {
+		print_r($_POST);
+	}
+
 	return true ;
 }
