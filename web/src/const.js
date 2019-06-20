@@ -1,4 +1,4 @@
 export const URL = {
-    home: 'http://localhost:3000/',
-    signIn: 'http://localhost/'
+    HOME: 'http://localhost:3000/',
+    BACK_END: 'http://react-example/'
 } 

@@ -1155,3 +1155,10 @@ FileETag None
     RewriteCond $1 !\.(jpe?g|png|gif|bmp|json|ico|svg|tif|tiff|css|js|php|htm|html|ttf|otf|webp|woff|woff2|txt|csv|rtf|doc|docx|xls|xlsx|ppt|pptx|odf|odp|ods|odt|pdf|psd|ai|eot|eps|ps|zip|tar|tgz|gz|rar|bz2|7z|aac|m4a|mp3|mp4|ogg|wav|wma|3gp|avi|flv|m4v|mkv|mov|mpeg|mpg|wmv|exe|iso|dmg|xml|swf)$ [NC]
     RewriteRule ^(.*)$ index.php [L,QSA]
 </IfModule>
+
+# <IfModule mod_headers.c>
+#     Header set Access-Control-Allow-Origin "*"
+#     Header always set Access-Control-Allow-Methods "POST, GET, OPTIONS, DELETE, PUT"
+#     Header always set Access-Control-Allow-Headers "My-First-Header,My-Second-Header,Authorization, content-type, csrf-token"
+# </IfModule>
+

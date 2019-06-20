@@ -1,11 +1,13 @@
-import React from 'react';
+import React from 'react'
+import Window from './components/auth_register/Window' 
+import { SnackbarProvider } from 'notistack';
 
 function App() {
   return (
-    <div className="box">
-      <p>message</p>
-    </div>
+    <SnackbarProvider maxSnack={3}>
+      <Window />
+    </SnackbarProvider>
   )
 }
 
-export default App;
+export default App

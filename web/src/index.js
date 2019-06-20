@@ -2,13 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 // 
 import './reset.css';
-import SingIn from './components/sign_in/SignIn';
+import App from './App';
 // 
 import * as serviceWorker from './serviceWorker';
 // 
 // 
 // 
-ReactDOM.render(<SingIn />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
 //
 //
 //
