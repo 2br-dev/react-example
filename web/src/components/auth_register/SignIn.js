@@ -1,10 +1,13 @@
 // const
 import { URL } from './../../const.js'
+// cookise
+import Cookies from './../../Cookies'
 // libs
 import React from 'react'
 import $ from 'jquery'
 // components
 import SignInView from './view/SignInView'
+import { connect } from 'react-redux'
 //
 // 
 // 
@@ -31,8 +34,16 @@ class SignIn extends React.Component {
             url: `${URL.BACK_END}back_end/sign_in.php`,
             type: 'POST',
             data: { email, password },
-            success: data => {
-                console.log(data)
+            success: responce => {
+                if(!isNaN(Number(responce))) {
+                    // 
+                    let cookie = new Cookies()
+                    cookie.setCookies('userId', responce)                    
+                    window.location.href = `${URL.HOME}profile`
+                    // 
+                } else {
+                    console.log(responce)
+                }
             }
         })
 

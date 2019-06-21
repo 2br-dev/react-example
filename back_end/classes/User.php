@@ -12,8 +12,6 @@ class User {
     //
     public function __construct() {
         $this->DB = DB::connect();
-        // 
-        $this->auth = $this->checkAuth();
     }
     // Добавить нового пользователя
     public function addUser(array $data) {
@@ -47,8 +45,6 @@ class User {
         if(!$stmt->execute($params)) {
             echo -1;
         }
-        
-        $id = $this->DB->lastInsertId();
         $this->sendEmail($email, $verifyHash);
     }
     //
@@ -73,29 +69,38 @@ class User {
         }
     }
     // авторизация
-    public function auth() {
-
-    }
-    // 
-    // 
-    // 
-    // проверка авторизации в сессии
-    private function checkAuth() {
-        if(isset($_SESSION['auth'])) {
-            if(isset($_SESSION['user_id'])) {
-                $this->userId = $_SESSION['user_id'];
-            }
-            return true;
+    public function auth(array $data) {
+        $email         = strip_tags(trim($data['email']));
+        $password      = strip_tags(trim($data['password']));
+        //
+        // если данные не валидны
+        if(strpos($email, '@') === false || count($password) === 0) {
+            echo -1;
+            exit;
         }
-        return false;
+        //
+        $query = "SELECT id FROM " . static::TABLE ." WHERE email = :email and password = :password";
+        $params = [
+            ':email'    => $email,
+            ':password' => md5($password)
+        ];
+        $stmt = $this->DB->prepare($query);
+        if(!$stmt) {
+            echo -1;
+        }
+        if(!$stmt->execute($params)) {
+            echo -1;
+        }
+        $responce = $stmt->fetchAll(PDO::FETCH_OBJ);
+        if(empty($responce)) {
+            echo -1;
+            exit;
+        }
+        echo $responce[0]->id;
     }
-    // запомнить пользователя в сессию
-    private function saveUser(int $id) {
-        $this->userId = $id;
-        $_SESSION['auth'] = true;
-        $_SESSION['userId'] = $id;
-    }
-    //
+    // 
+    // 
+    // 
     public function checkEmail(string $email) {
         $query = "SELECT id FROM " . static::TABLE ." WHERE email = :email";
         $params = [

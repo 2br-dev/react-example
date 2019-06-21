@@ -9,3 +9,4 @@ $fields = [
 ];
 //
 $user = new User();
+$user->auth($fields);
